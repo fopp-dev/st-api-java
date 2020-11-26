@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.SitePriceSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.xc.pojo.SitePriceSetting" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="publish_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="stock_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="close_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="open_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="high_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="low_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="publish_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="add_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, publish_time, stock_name, close_price, open_price, high_price, low_price, publish_price, 
+    add_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site_price_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site_price_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xc.pojo.SitePriceSetting" >
+    insert into site_price_setting (id, publish_time, stock_name, 
+      close_price, open_price, high_price, 
+      low_price, publish_price, add_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{publishTime,jdbcType=TIMESTAMP}, #{stockName,jdbcType=VARCHAR}, 
+      #{closePrice,jdbcType=DECIMAL}, #{openPrice,jdbcType=DECIMAL}, #{highPrice,jdbcType=DECIMAL}, 
+      #{lowPrice,jdbcType=DECIMAL}, #{publishPrice,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xc.pojo.SitePriceSetting" >
+    insert into site_price_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="closePrice != null" >
+        close_price,
+      </if>
+      <if test="openPrice != null" >
+        open_price,
+      </if>
+      <if test="highPrice != null" >
+        high_price,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="publishPrice != null" >
+        publish_price,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="closePrice != null" >
+        #{closePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="openPrice != null" >
+        #{openPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null" >
+        #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="publishPrice != null" >
+        #{publishPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.SitePriceSetting" >
+    update site_price_setting
+    <set >
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="closePrice != null" >
+        close_price = #{closePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="openPrice != null" >
+        open_price = #{openPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="highPrice != null" >
+        high_price = #{highPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="publishPrice != null" >
+        publish_price = #{publishPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xc.pojo.SitePriceSetting" >
+    update site_price_setting
+    set publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      close_price = #{closePrice,jdbcType=DECIMAL},
+      open_price = #{openPrice,jdbcType=DECIMAL},
+      high_price = #{highPrice,jdbcType=DECIMAL},
+      low_price = #{lowPrice,jdbcType=DECIMAL},
+      publish_price = #{publishPrice,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="listByAdmin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM site_price_setting
+    ORDER BY id DESC
+  </select>
+
+</mapper>

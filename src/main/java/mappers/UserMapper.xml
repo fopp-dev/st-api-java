@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.xc.pojo.User">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="agent_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="agent_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="user_pwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="with_pwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="nick_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="real_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="id_card" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="account_type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="user_capital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="user_hmt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="enable_hmt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="user_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="enable_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="sum_charge_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="sum_buy_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="recom_phone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="is_lock" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="is_login" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="reg_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="reg_ip" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="reg_address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="img1_key" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="img2_key" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="img3_key" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="is_active" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="auth_msg" jdbcType="VARCHAR" javaType="java.lang.String"/>
+
+            <arg column="user_index_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="enable_index_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="user_fut_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="enable_fut_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="withdrawal_Pwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="trading_amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+            <arg column="user_stockA_capital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+            <arg column="user_stockHK_capital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+            <arg column="user_stockA_ocapital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+            <arg column="user_stockHK_ocapital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+            <arg column="user_stockA_give_capital" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, agent_id, agent_name,email, phone, user_pwd, with_pwd, nick_name, real_name, id_card,
+    account_type,user_capital,user_hmt,enable_hmt ,user_amt, enable_amt, sum_charge_amt, sum_buy_amt, recom_phone, is_lock, is_login,
+    reg_time, reg_ip, reg_address, img1_key, img2_key, img3_key, is_active, auth_msg,
+    user_index_amt, enable_index_amt, user_fut_amt, enable_fut_amt, withdrawal_Pwd, trading_amount, user_stockA_capital, user_stockHK_capital, user_stockA_ocapital, user_stockHK_ocapital,user_stockA_give_capital
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="com.xc.pojo.User">
+    insert into user (id, agent_id, agent_name, 
+      email,phone, user_pwd, with_pwd,
+      nick_name, real_name, id_card, 
+      account_type, user_capital,user_hmt,enable_hmt ,user_amt, enable_amt,
+      sum_charge_amt, sum_buy_amt, recom_phone, 
+      is_lock,is_login, reg_time, reg_ip,
+      reg_address, img1_key, img2_key, 
+      img3_key, is_active, auth_msg,
+      user_index_amt, enable_index_amt, user_fut_amt, enable_fut_amt, trading_amount, user_stockA_capital,user_stockHK_capital, user_stockA_ocapital,user_stockHK_ocapital,user_stockA_give_capital
+      )
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{agentName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, #{withPwd,jdbcType=VARCHAR},
+      #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{accountType,jdbcType=INTEGER}, #{userCapital,jdbcType=DECIMAL}, #{userHmt,jdbcType=DECIMAL},  #{enableHmt,jdbcType=DECIMAL},#{userAmt,jdbcType=DECIMAL}, #{enableAmt,jdbcType=DECIMAL},
+      #{sumChargeAmt,jdbcType=DECIMAL}, #{sumBuyAmt,jdbcType=DECIMAL}, #{recomPhone,jdbcType=VARCHAR}, 
+      #{isLock,jdbcType=INTEGER},#{isLogin,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP}, #{regIp,jdbcType=VARCHAR},
+      #{regAddress,jdbcType=VARCHAR}, #{img1Key,jdbcType=VARCHAR}, #{img2Key,jdbcType=VARCHAR}, 
+      #{img3Key,jdbcType=VARCHAR}, #{isActive,jdbcType=INTEGER}, #{authMsg,jdbcType=VARCHAR},
+      #{userIndexAmt,jdbcType=DECIMAL},  #{enableIndexAmt,jdbcType=DECIMAL},
+      #{userFutAmt,jdbcType=DECIMAL}, #{enableFutAmt,jdbcType=DECIMAL}, #{tradingAmount,jdbcType=DECIMAL},#{userStockACapital,jdbcType=DECIMAL},#{userStockHKCapital,jdbcType=DECIMAL},#{userStockAOcapital,jdbcType=DECIMAL},#{userStockHKOcapital,jdbcType=DECIMAL},#{userStockAGiveCapital,jdbcType=DECIMAL}
+      )
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.xc.pojo.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="agentId != null">
+                agent_id,
+            </if>
+            <if test="agentName != null">
+                agent_name,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="userPwd != null">
+                user_pwd,
+            </if>
+            <if test="withPwd != null">
+                with_pwd,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="idCard != null">
+                id_card,
+            </if>
+            <if test="accountType != null">
+                account_type,
+            </if>
+            <if test="userCapital != null">
+                user_capital,
+            </if>
+            <if test="userHnt != null">
+                user_hmt,
+            </if>
+            <if test="enableHmt != null">
+                enable_hmt,
+            </if>
+            <if test="userAmt != null">
+                user_amt,
+            </if>
+            <if test="enableAmt != null">
+                enable_amt,
+            </if>
+            <if test="sumChargeAmt != null">
+                sum_charge_amt,
+            </if>
+            <if test="sumBuyAmt != null">
+                sum_buy_amt,
+            </if>
+            <if test="recomPhone != null">
+                recom_phone,
+            </if>
+            <if test="isLock != null">
+                is_lock,
+            </if>
+            <if test="isLogin != null">
+                is_login,
+            </if>
+            <if test="regTime != null">
+                reg_time,
+            </if>
+            <if test="regIp != null">
+                reg_ip,
+            </if>
+            <if test="regAddress != null">
+                reg_address,
+            </if>
+            <if test="img1Key != null">
+                img1_key,
+            </if>
+            <if test="img2Key != null">
+                img2_key,
+            </if>
+            <if test="img3Key != null">
+                img3_key,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="authMsg != null">
+                auth_msg,
+            </if>
+            <if test="userIndexAmt != null">
+                user_index_amt,
+            </if>
+            <if test="enableIndexAmt != null">
+                enable_index_amt,
+            </if>
+            <if test="userFutAmt != null">
+                user_fut_amt,
+            </if>
+            <if test="enableFutAmt != null">
+                enable_fut_amt,
+            </if>
+            <if test="tradingAmount != null">
+                trading_amount,
+            </if>
+            <if test="userStockACapital != null">
+                user_stockA_capital,
+            </if>
+            <if test="userStockHKCapital != null">
+                user_stockHK_capital,
+            </if>
+            <if test="userStockAOcapital != null">
+                user_stockA_ocapital,
+            </if>
+            <if test="userStockHKOcapital != null">
+                user_stockHK_ocapital,
+            </if>
+            <if test="userStockAGiveCapital != null">
+                user_stockA_give_capital,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="agentId != null">
+                #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="agentName != null">
+                #{agentName,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="withPwd != null">
+                #{withPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="accountType != null">
+                #{accountType,jdbcType=INTEGER},
+            </if>
+            <if test="userAmt != null">
+                #{userAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableAmt != null">
+                #{enableAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="sumChargeAmt != null">
+                #{sumChargeAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="sumBuyAmt != null">
+                #{sumBuyAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="recomPhone != null">
+                #{recomPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+                #{isLock,jdbcType=INTEGER},
+            </if>
+            <if test="isLogin != null">
+                #{isLogin,jdbcType=INTEGER},
+            </if>
+            <if test="regTime != null">
+                #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="regIp != null">
+                #{regIp,jdbcType=VARCHAR},
+            </if>
+            <if test="regAddress != null">
+                #{regAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="img1Key != null">
+                #{img1Key,jdbcType=VARCHAR},
+            </if>
+            <if test="img2Key != null">
+                #{img2Key,jdbcType=VARCHAR},
+            </if>
+            <if test="img3Key != null">
+                #{img3Key,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=INTEGER},
+            </if>
+            <if test="authMsg != null">
+                #{authMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="userIndexAmt != null">
+                #{userIndexAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableIndexAmt != null">
+                #{enableIndexAmt,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userFutAmt != null">
+                #{userFutAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableFutAmt != null">
+                #{enableFutAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="userStockACapital != null">
+                #{userStockACapital,jdbcType=DECIMAL},
+            </if>
+            <if test="userStockHKCapital != null">
+                #{userStockHKCapital,jdbcType=DECIMAL},
+            </if>
+            <if test="userStockAOcapital != null">
+                #{userStockAOcapital,jdbcType=DECIMAL},
+            </if>
+            <if test="userStockHKOcapital != null">
+                #{userStockHKOcapital,jdbcType=DECIMAL},
+            </if>
+            <if test="userStockAGiveCapital != null">
+                #{userStockAGiveCapital,jdbcType=DECIMAL},
+            </if>
+
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.User">
+        update user
+        <set>
+            <if test="agentId != null">
+                agent_id = #{agentId,jdbcType=INTEGER},
+            </if>
+            <if test="agentName != null">
+                agent_name = #{agentName,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                user_pwd = #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="withPwd != null">
+                with_pwd = #{withPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard,jdbcType=VARCHAR},
+            </if>
+            <if test="accountType != null">
+                account_type = #{accountType,jdbcType=INTEGER},
+            </if>
+            <if test="userCapital != null">
+                user_capital = #{userCapital,jdbcType=DECIMAL},
+            </if>
+            <if test="userHmt != null">
+                user_hmt = #{userHmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableHmt != null">
+                enable_hmt = #{enableHmt,jdbcType=DECIMAL},
+            </if>
+            <if test="userAmt != null">
+                user_amt = #{userAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableAmt != null">
+                enable_amt = #{enableAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="sumChargeAmt != null">
+                sum_charge_amt = #{sumChargeAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="sumBuyAmt != null">
+                sum_buy_amt = #{sumBuyAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="recomPhone != null">
+                recom_phone = #{recomPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="isLock != null">
+                is_lock = #{isLock,jdbcType=INTEGER},
+            </if>
+            <if test="isLogin != null">
+                is_login = #{isLogin,jdbcType=INTEGER},
+            </if>
+            <if test="regTime != null">
+                reg_time = #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="regIp != null">
+                reg_ip = #{regIp,jdbcType=VARCHAR},
+            </if>
+            <if test="regAddress != null">
+                reg_address = #{regAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="img1Key != null">
+                img1_key = #{img1Key,jdbcType=VARCHAR},
+            </if>
+            <if test="img2Key != null">
+                img2_key = #{img2Key,jdbcType=VARCHAR},
+            </if>
+            <if test="img3Key != null">
+                img3_key = #{img3Key,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=INTEGER},
+            </if>
+            <if test="authMsg != null">
+                auth_msg = #{authMsg,jdbcType=VARCHAR},
+            </if>
+            <if test="userIndexAmt != null">
+                user_index_amt = #{userIndexAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableIndexAmt != null">
+                enable_index_amt = #{enableIndexAmt,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userFutAmt != null">
+                user_fut_amt = #{userFutAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="enableFutAmt != null">
+                enable_fut_amt = #{enableFutAmt,jdbcType=DECIMAL},
+            </if>
+            <if test="tradingAmount != null">
+                trading_amount = #{tradingAmount,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userStockACapital != null">
+                user_stockA_capital = #{userStockACapital,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userStockHKCapital != null">
+                user_stockHK_capital = #{userStockHKCapital,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userStockAOcapital != null">
+                user_stockA_ocapital = #{userStockAOcapital,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userStockHKOcapital != null">
+                user_stockHK_ocapital = #{userStockHKOcapital,jdbcType=DECIMAL},
+            </if>
+
+            <if test="userStockAGiveCapital != null">
+                user_stockA_give_capital = #{userStockAGiveCapital,jdbcType=DECIMAL},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xc.pojo.User">
+    update user
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      with_pwd = #{withPwd,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      account_type = #{accountType,jdbcType=INTEGER},
+      user_capital = #{userCapital,jdbcType=DECIMAL},
+      user_hmt = #{userHmt,jdbcType=DECIMAL},
+      enable_hmt = #{enableHmt,jdbcType=DECIMAL},
+      user_amt = #{userAmt,jdbcType=DECIMAL},
+      enable_amt = #{enableAmt,jdbcType=DECIMAL},
+      sum_charge_amt = #{sumChargeAmt,jdbcType=DECIMAL},
+      sum_buy_amt = #{sumBuyAmt,jdbcType=DECIMAL},
+      recom_phone = #{recomPhone,jdbcType=VARCHAR},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      is_login = #{isLogin,jdbcType=INTEGER},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      img1_key = #{img1Key,jdbcType=VARCHAR},
+      img2_key = #{img2Key,jdbcType=VARCHAR},
+      img3_key = #{img3Key,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=INTEGER},
+      auth_msg = #{authMsg,jdbcType=VARCHAR},
+      user_index_amt = #{userIndexAmt,jdbcType=DECIMAL},
+      enable_index_amt = #{enableIndexAmt,jdbcType=DECIMAL},
+      user_fut_amt = #{userFutAmt,jdbcType=DECIMAL},
+      enable_fut_amt = #{enableFutAmt,jdbcType=DECIMAL},
+      trading_amount = #{tradingAmount,jdbcType=DECIMAL},
+      user_stockA_capital = #{userStockACapital,jdbcType=DECIMAL},
+      user_stockHK_capital = #{userStockHKCapital,jdbcType=DECIMAL},
+      user_stockA_ocapital = #{userStockAOcapital,jdbcType=DECIMAL},
+      user_stockHK_ocapital = #{userStockHKOcapital,jdbcType=DECIMAL},
+      user_stockA_give_capital = #{userStockAGiveCapital,jdbcType=DECIMAL},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="findByPhone" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE phone = #{phoneNum}
+    </select>
+
+    <select id="findByEmail" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE email = #{email}
+    </select>
+
+    <select id="login" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE phone = #{phone} and user_pwd = #{userPwd}
+    </select>
+
+    <select id="emailLogin" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE (email = #{email} OR id = #{email}) and user_pwd = #{userPwd}
+    </select>
+
+    <select id="listByAgent" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        <where>
+            agent_id = #{searchId}
+            <if test="realName != null and realName != '' ">
+                and real_name like CONCAT('%','${realName}','%')
+            </if>
+            <if test="phone != null and phone != '' ">
+                and phone like CONCAT('%','${phone}','%')
+            </if>
+            <if test="accountType != null ">
+                and account_type = #{accountType}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+
+    <select id="listByAdmin" resultMap="BaseResultMap" parameterType="map">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        <where>
+            <if test="searchId != null ">
+                and agent_id = #{searchId}
+            </if>
+            <if test="realName != null and realName != '' ">
+                and (real_name like CONCAT('%','${realName}','%') or id=#{realName})
+            </if>
+            <if test="phone != null and phone != '' ">
+                and (phone like CONCAT('%','${phone}','%') or email like CONCAT('%','${phone}','%'))
+            </if>
+            <if test="accountType != null ">
+                and account_type = #{accountType}
+            </if>
+            <if test="isActive != null ">
+                and is_active = #{isActive}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+
+    <select id="CountUserSize" parameterType="integer" resultType="int">
+    SELECT COUNT(id) FROM user WHERE account_type = #{accountType}
+  </select>
+
+    <select id="CountUserAmt" parameterType="integer" resultType="decimal">
+    SELECT sum(user_amt) FROM user WHERE account_type = #{accountType}
+  </select>
+    <select id="CountEnableAmt" parameterType="integer" resultType="decimal">
+    SELECT sum(enable_amt) FROM user WHERE account_type = #{accountType}
+  </select>
+
+
+
+    <select id="abstractListByAdmin" parameterType="map" resultType="java.util.HashMap">
+        SELECT distinct
+        u.id AS userId,
+        u.real_name AS realName,
+        u.reg_time AS regTime,
+        u.agent_name AS agentName,
+        u.user_capital AS userCapital,
+        u.user_hmt AS userHmt,
+        u.user_amt AS userAmt,
+        u.user_stockA_capital AS userStockACapital,
+        u.user_stockHK_capital as userStockHKCapital,
+        u.user_stockA_give_capital AS userStockAGiveCapital,
+        COALESCE(
+            (select sum(pay_amt) from user_recharge where order_status=1 and user_id = u.id)
+            ,0
+        )
+        AS inMoney,
+        COALESCE(
+        (select sum(pay_amt) from user_recharge where order_status=0 and user_id = u.id)
+        ,0
+        )
+        AS readyInMoney,
+        COALESCE(
+        (select sum(with_amt) from user_withdraw where with_status=1 and user_id = u.id)
+        ,0
+        )
+        AS outMoney,
+        COALESCE(
+        (select sum(with_amt) from user_withdraw where with_status=0 and user_id = u.id)
+        ,0
+        )
+        AS readyOutMoney,
+        COALESCE(
+
+        SUM(
+
+        IF (
+        ISNULL(p.sell_order_id) = 1,
+        p.order_total_price,
+        0
+        )
+        ),0
+        )
+        AS totalAbuy,
+        COALESCE(
+        SUM(
+        p.all_profit_and_lose
+        ),0
+        )
+        AS allAProLose,
+        COALESCE(
+        SUM(
+        IF(
+        p.sell_order_id is not null,
+        p.order_fee + p.order_spread + p.order_stay_fee + p.spread_rate_price ,
+        0
+        )
+        ),0
+        )
+        AS feeA,
+        COALESCE(
+        SUM(
+        IF (
+        ISNULL(g.sell_order_id) = 1,
+        g.order_total_price,
+        0
+        )
+        ),0
+        )
+        AS totalHbuy,
+        COALESCE(
+        SUM(
+        g.all_profit_and_lose
+        ),0
+        )
+        AS allHProLose,
+        COALESCE(
+        SUM(
+        IF(
+        g.sell_order_id is not null,
+        g.order_fee + g.order_spread + g.order_stay_fee + g.spread_rate_price ,
+        0
+        )
+        ) ,0
+        ) AS feeH
+        FROM
+        `user` u
+        LEFT JOIN user_position p ON u.id = p.user_id
+        LEFT JOIN user_gg_position g ON u.id = g.user_id
+        LEFT JOIN user_recharge r ON u.id = r.user_id
+        LEFT JOIN user_withdraw w ON u.id = w.user_id
+        <where>
+            <if test="searchId != null ">
+                and u.agent_id = #{searchId}
+            </if>
+            <if test="realName != null and realName != '' ">
+                and u.real_name like CONCAT('%','${realName}','%')
+            </if>
+            <if test="userId != null and userId != '' ">
+                and u.id = #{userId}
+            </if>
+            <if test="accountType != null ">
+                and account_type = #{accountType}
+            </if>
+            <if test="startTime != null ">
+                and u.reg_time <![CDATA[ >= ]]> #{startTime}
+            </if>
+            <if test="endTime != null ">
+                and u.reg_time <![CDATA[ <= ]]> #{endTime}
+            </if>
+        </where>
+        GROUP BY
+            u.id
+  </select>
+</mapper>

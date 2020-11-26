@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xc.dao.HkDollarRateMapper" >
+    <resultMap id="BaseResultMap" type="com.xc.pojo.HkDollarRate" >
+        <constructor >
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="in_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="out_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="int_diff" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="out_diff" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="real_rate" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+        </constructor>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, in_rate, out_rate, int_diff, out_diff, real_rate,
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from hk_dollar_rate
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from hk_dollar_rate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.xc.pojo.HkDollarRate" >
+    insert into hk_dollar_rate (id, in_rate, out_rate,
+      int_diff, out_diff, real_rate
+      )
+    values (#{id,jdbcType=INTEGER}, #{inRate,jdbcType=DECIMAL}, #{outRate,jdbcType=DECIMAL},
+      #{inDiff,jdbcType=DECIMAL}, #{outDiff,jdbcType=DECIMAL}, #{realRate,jdbcType=DECIMAL}
+      )
+  </insert>
+
+    <insert id="insertSelective" parameterType="com.xc.pojo.HkDollarRate" >
+        insert into hk_dollar_rate
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="buyFee != null" >
+                in_rate,
+            </if>
+            <if test="sellFee != null" >
+                out_rate,
+            </if>
+            <if test="stayFee != null" >
+                in_diff,
+            </if>
+            <if test="dutyFee != null" >
+                out_diff,
+            </if>
+            <if test="stayMaxDays != null" >
+                real_rate,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="buyFee != null" >
+                #{inRate,jdbcType=DECIMAL},
+            </if>
+            <if test="sellFee != null" >
+                #{outRate,jdbcType=DECIMAL},
+            </if>
+            <if test="stayFee != null" >
+                #{inDiff,jdbcType=DECIMAL},
+            </if>
+            <if test="dutyFee != null" >
+                #{outDiff,jdbcType=DECIMAL},
+            </if>
+            <if test="stayMaxDays != null" >
+                #{realRate,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xc.pojo.HkDollarRate" >
+        update hk_dollar_rate
+        <set >
+            <if test="buyFee != null" >
+                in_rate = #{inRate,jdbcType=DECIMAL},
+            </if>
+            <if test="sellFee != null" >
+                out_rate = #{outRate,jdbcType=DECIMAL},
+            </if>
+            <if test="stayFee != null" >
+                in_diff = #{inDiff,jdbcType=DECIMAL},
+            </if>
+            <if test="dutyFee != null" >
+                out_diff = #{outDiff,jdbcType=DECIMAL},
+            </if>
+            <if test="stayMaxDays != null" >
+                real_rate = #{realRate,jdbcType=DECIMAL},
+            </if>
+
+
+        </set>
+
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.xc.pojo.HkDollarRate" >
+    update hk_dollar_rate
+    set in_rate = #{inRate,jdbcType=DECIMAL},
+      out_rate = #{outRate,jdbcType=DECIMAL},
+      in_diff = #{inDiff,jdbcType=DECIMAL},
+      out_diff = #{outDiff,jdbcType=DECIMAL},
+      real_rate = #{realRate,jdbcType=DECIMAL},
+
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+
+
+    <select id="findAllHkDollarRate" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM hk_dollar_rate
+    </select>
+
+
+
+
+</mapper>
